@@ -1,15 +1,10 @@
 *** Settings ***
-Resource    keywords.robot
-Resource    variables.robot
 Library    RequestsLibrary
 
 
 *** Variables ***
 ${BASE_URL}    https://reqres.in    
 &{HEADERS}    x-api-key=reqres_64c48ef3e0ba45c4884f4738d283ec8f
-*** Test Cases ***
-
-
 
 *** Test Cases ***
 Get User Success

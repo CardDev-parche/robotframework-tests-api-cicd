@@ -11,7 +11,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh '''
+                bat  '''
                 pip install --upgrade pip
                 pip install -r requirements.txt
                 '''
@@ -20,7 +20,7 @@ pipeline {
 
         stage('Run Test Automate') {
             steps {
-                sh '''
+                bat  '''
                 robot -d results tests/
                 '''
             }
