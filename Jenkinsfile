@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout Code From Git') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                pip install --upgrade pip
+                pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Run Test Automate') {
+            steps {
+                sh '''
+                robot -d results tests/
+                '''
+            }
+        }
+
+        stage('Send Result To Jenkins') {
+            steps {
+                robot outputPath: 'results'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'results/**', fingerprint: true
+        }
+        success {
+            echo 'Automation test passed ✅'
+        }
+        failure {
+            echo 'Automation test failed ❌'
+        }
+    }
+}

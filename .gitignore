@@ -1,0 +1,14 @@
+# Ignore environment files
+.env
+.venv
+/venv
+__pycache__/
+
+
+log/
+log.html
+output.xml
+report.html
+
+results/
+
