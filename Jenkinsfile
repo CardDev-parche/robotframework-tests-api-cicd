@@ -21,7 +21,7 @@ pipeline {
         stage('Run Test Automate') {
             steps {
                 bat  '''
-                robot -d results tests/
+                robot -d results . 
                 '''
             }
         }
